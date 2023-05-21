@@ -1,18 +1,22 @@
+/* The following styles apply to overall HearMeSee application container */
 .App {
   text-align: center;
 }
 
+/* Style for app logo */
 .App-logo {
   height: 40vmin;
   pointer-events: none;
 }
 
+/* Animation style for app logo */
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
   }
 }
 
+/* Style for app header */
 .App-header {
   background-color: #282c34;
   min-height: 100vh;
@@ -24,10 +28,13 @@
   color: white;
 }
 
+
+/* Style for links within HearMeSee application */
 .App-link {
   color: #61dafb;
 }
 
+/* Keyframe animation for spinning application logo */
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
@@ -37,6 +44,7 @@
   }
 }
 
+/* Styles for video container */
 .video-container {
   display: flex;
   justify-content: center;
@@ -44,6 +52,7 @@
   height: 100vh;
 }
 
+/* Styles for webcam video */
 .webcam-video {
   width: auto;
   height: auto;

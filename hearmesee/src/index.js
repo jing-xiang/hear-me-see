@@ -4,7 +4,10 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
+// Creating a root for React to render the app
 const root = ReactDOM.createRoot(document.getElementById('root'));
+
+// Rendering app within root 
 root.render(
   <React.StrictMode>
     <App />
