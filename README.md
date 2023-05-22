@@ -29,3 +29,13 @@ TensorFlow: Used for implementing object detection and image recognition capabil
 Google Cloud (Speech-to-Text): Used for converting voice commands into text for processing.
 
 React Native: Used for developing parts of the application's user interface.
+
+
+In the project directory, you can run:
+
+yarn start
+Runs the app in the development mode.
+Open http://localhost:3000 to view it in the browser.
+
+The page will reload if you make edits.
+You will also see any lint errors in the console.
