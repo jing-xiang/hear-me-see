@@ -33,7 +33,7 @@ React Native: Used for developing parts of the application's user interface.
 
 # In the project directory, you can run:
 
-yarn start
+yarn start or
 npm start
 
 Runs the app in the development mode.
