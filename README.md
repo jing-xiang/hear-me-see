@@ -31,7 +31,7 @@ Google Cloud (Speech-to-Text): Used for converting voice commands into text for 
 React Native: Used for developing parts of the application's user interface.
 
 
-In the project directory, you can run:
+# In the project directory, you can run:
 
 yarn start
 Runs the app in the development mode.
