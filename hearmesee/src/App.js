@@ -4,10 +4,10 @@ import Webcam from 'react-webcam';
 function App() {
   const webcamRef = useRef(null);
 
-  const capture = () => {
-    const imageSrc = webcamRef.current.getScreenshot();
-    console.log(imageSrc);
-  };
+  // const capture = () => {
+  //   const imageSrc = webcamRef.current.getScreenshot();
+  //   console.log(imageSrc);
+  // };
 
   useEffect(() => {
     navigator.mediaDevices.getUserMedia({ video: true })
@@ -29,7 +29,7 @@ function App() {
           className="webcam-video"
         />
       </div>
-      <button onClick={capture}>Capture</button>
+      {/* <button onClick={capture}>Capture</button> */}
     </div>
   );
   
