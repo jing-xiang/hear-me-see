@@ -30,7 +30,7 @@ Google Cloud (Speech-to-Text): Used for converting voice commands into text for 
 
 React Native: Used for developing parts of the application's user interface.
 
-
+# Make sure you are in the correct directory by running cd hearmesee ->
 # In the project directory, you can run:
 
 yarn start or
