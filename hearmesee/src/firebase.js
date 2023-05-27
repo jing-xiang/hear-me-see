@@ -3,7 +3,7 @@ import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 import { getDatabase } from "firebase/database";
 
 // TODO: Replace the following with your app's Firebase project configuration
-const firebaseConfig = initializeApp( {
+const firebaseConfig = {
     apiKey: "AIzaSyAeAl3FUH0PGDWToUzSqhKfj4af-RR-8ok",
     authDomain: "hear-me-see.firebaseapp.com",
     databaseURL: "https://hear-me-see-default-rtdb.asia-southeast1.firebasedatabase.app",
@@ -12,14 +12,27 @@ const firebaseConfig = initializeApp( {
     messagingSenderId: "28925318865",
     appId: "1:28925318865:web:77ec8aa82bf8c877a1d7f0",
     measurementId: "G-WN6MKN9KBQ"
-});
+};
 
 const app = initializeApp(firebaseConfig);
 const database = getDatabase(app);
 
 firebase.initializeApp(firebaseConfig);
-const auth = firebase.auth();
 
+const auth = getAuth(app);
+createUserWithEmailAndPassword(auth, email, password)
+  .then((userCredential) => {
+    // Signed in 
+    const user = userCredential.user;
+    const email = userCredential.email;
+    const password = userCredential.password;
+    // ...
+  })
+  .catch((error) => {
+    const errorCode = error.code;
+    const errorMessage = error.message;
+    // ..
+  });
 
 function register() {
     var username = getInputVal('username');
