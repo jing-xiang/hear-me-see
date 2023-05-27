@@ -1,13 +1,16 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400&family=Quicksand&display=swap');
+
 * {
     font-family: 'Poppins', sans-serif;
 }
 
 body {
-    background-color:#edc0c0;
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
-    background-attachment: fixed;
+    display: flex;
+    background: #0c1022;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    overflow: hidden;
 }
 
 .box {
@@ -26,20 +29,20 @@ body {
 
 h1 {
     text-align: center;
-    color: #333;
+    color: #fff;
     margin-bottom: 20px;
 }
 
 .subline {
     text-align: center;
-    color: #1c1111;
+    color: #fff;
     font-size: 15px;
-    margin-top: -15px;
+    margin-top: -25px;
     margin-bottom: 20px;
 }
 
 span {  
-    color: #333;
+    color: #fff;
     font-size: 16px;
     display: flex;
     justify-content: center;
@@ -48,7 +51,7 @@ span {
 }
 
 header{
-    color: #090909;
+    color: #fff;
     font-size: 30px;
     display: flex;
     justify-content: center;
@@ -64,9 +67,9 @@ header{
     height: 45px;
     width: 87%;
     border: none;
-    outline-color: #070707;
+    outline-color: #fff;
     border-radius: 30px;
-    color: #0e0d0d;
+    color: #fff;
     padding: 0 0 0 45px;
     background: rgba(255,255,255,0.1);
     margin-bottom: 15px;
@@ -80,7 +83,7 @@ i {
 }
 
 ::-webkit-input-placeholder {
-    color: #070707;
+    color: #fff;
 }
 
 .submit {
@@ -95,7 +98,7 @@ i {
 }
 
 .submit:hover{
-    box-shadow: 1px 5px 7 1px rgba(0, 0, 0, 0.2);
+    box-shadow: 1px 5px 7 1px rgba(237, 231, 231, 0.2);
 }
 
 .bottom{
@@ -103,7 +106,7 @@ i {
     flex-direction: row;
     justify-content: space-between;
     font-size: small;
-    color: #111010;
+    color: #fff;
     margin-top: 10px;
 }
 
@@ -112,24 +115,38 @@ i {
 }
 
 label a{
-    color: #111010;
+    color: #fff;
     text-decoration: none;
 }
 
 
 .register {
     font-size: .9em;
-    color: #070707;
+    color: #fff;
     text-align: center;
     margin: 25px 0 10px;
 }
 
 .register p a {
     text-decoration: none;
-    color: #070707;
+    color: #fff;
     font-weight: 600;
 }
 
 .register p a:hover{
     text-decoration: underline;
+}
+
+.top-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 13px;
+}
+
+.top-header a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: 500;
+    margin-top: 10px;
 }
