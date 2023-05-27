@@ -67,6 +67,7 @@ header{
 .input-field {
     display: flex;
     flex-direction: column;
+    margin-bottom: 8px;
 }
 
 .input {
