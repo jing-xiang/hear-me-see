@@ -1,5 +1,6 @@
 import { initializeApp } from 'firebase/app';
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import { getDatabase } from "firebase/database";
 
 // TODO: Replace the following with your app's Firebase project configuration
 const firebaseConfig = initializeApp( {
@@ -13,11 +14,11 @@ const firebaseConfig = initializeApp( {
     measurementId: "G-WN6MKN9KBQ"
 });
 
-const app = initializeApp(firebaseConfig);
+const app = initializeApp(firebaseConfig);\
+const database = getDatabase(app);
 
 firebase.initializeApp(firebaseConfig);
 const auth = firebase.auth();
-const database = firebase.database();
 
 
 function register() {
