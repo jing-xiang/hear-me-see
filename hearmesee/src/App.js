@@ -20,6 +20,18 @@ function App() {
     }, 10);
   };
 
+  const [windowDimensions, setWindowDimensions] = useState({
+    width: window.innerWidth,
+    height: window.innerHeight,
+  });
+
+  const handleResize = () => {
+    setWindowDimensions({
+      width: window.innerWidth,
+      height: window.innerHeight,
+    });
+  };
+  
   const detect = async (net) => {
     // Check data is available
     if (
@@ -33,8 +45,7 @@ function App() {
       const videoHeight = webcamRef.current.video.videoHeight;
 
       // Set video width
-      webcamRef.current.video.width = videoWidth;
-      webcamRef.current.video.height = videoHeight;
+
 
       // Set canvas height and width
       canvasRef.current.width = videoWidth;
@@ -51,6 +62,13 @@ function App() {
 
   useEffect(()=>{runCoco()},[]);
 
+  useEffect(() => {
+    window.addEventListener('resize', handleResize);
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
+
   return (
     <div className="App">
       <header className="App-header">
@@ -65,8 +83,8 @@ function App() {
             right: 0,
             textAlign: "center",
             zindex: 9,
-            width: 640,
-            height: 480,
+            width: windowDimensions.width,
+            height: windowDimensions.height,
           }}
         />
 
