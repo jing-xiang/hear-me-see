@@ -26,7 +26,7 @@ function App() {
 
   const runCoco = async () => {
     const net = await cocossd.load();
-    console.log("Handpose model loaded.");
+    console.log("Loaded.");
     // Loop and detect objects
     setInterval(() => {
       detect(net);
@@ -71,6 +71,38 @@ function App() {
     synthRef.current.speak(utterance);
   };
 
+  const getLocation = () => {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        async (position) => {
+          const { latitude, longitude } = position.coords;
+          try {
+            const geocoder = new google.maps.Geocoder();
+            const latLng = new google.maps.LatLng(latitude, longitude);
+            geocoder.geocode({ location: latLng }, (results, status) => {
+              if (status === google.maps.GeocoderStatus.OK && results.length > 0) {
+                const locationData = results[0].formatted_address;
+                setLocation({
+                  latitude,
+                  longitude,
+                  locationData
+                });
+                speak(locationData); // Speak the location data
+              }
+            });
+          } catch (error) {
+            console.error('Error retrieving location data:', error);
+          }
+        },
+        (error) => {
+          console.error('Error retrieving location:', error);
+        }
+      );
+    } else {
+      console.log('Geolocation is not supported by this browser.');
+    }
+  };
+  
   useEffect(() => {
     runCoco();
   }, []);

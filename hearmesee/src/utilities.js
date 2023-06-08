@@ -17,5 +17,6 @@ export const drawRect = (detections, ctx) =>{
       ctx.fillText(text, x, y);
       ctx.rect(x, y, width, height); 
       ctx.stroke();
+      console.log("Detected!");
     });
   }
