@@ -20,15 +20,18 @@ Location Tracking: HearMeSee empowers caregivers and family members to monitor t
 
 # Tech Stack
 
-Android Studio: Primary Integrated Development Environment (IDE) for Android app development.
-
 JavaScript: Used for scripting parts of user interface and server interactions.
 
-TensorFlow: Used for implementing object detection and image recognition capabilities.
+NodeJS: Used to create server-side web applications.
+
+TensorFlowJS: Used for implementing object detection and image recognition capabilities.
 
 Google Cloud (Speech-to-Text): Used for converting voice commands into text for processing.
 
-React Native: Used for developing parts of the application's user interface.
+Firebase: Used for authentication of users and storing of user information (in Firebase Realtime Database)
+
+React: Used for developing parts of the application's user interface.
+
 
 # Make sure you are in the correct directory by running cd hearmesee ->
 # In the project directory, you can run:
