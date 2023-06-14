@@ -11,6 +11,8 @@ function App() {
   const canvasRef = useRef(null);
   const synthRef = useRef(window.speechSynthesis);
   const [spokenWord, setSpokenWord] = useState('');
+  const [locationData, setLocationData] = useState('');
+
 
   const [windowDimensions, setWindowDimensions] = useState({
     width: window.innerWidth,
@@ -77,19 +79,13 @@ function App() {
         async (position) => {
           const { latitude, longitude } = position.coords;
           try {
-            const geocoder = new google.maps.Geocoder();
-            const latLng = new google.maps.LatLng(latitude, longitude);
-            geocoder.geocode({ location: latLng }, (results, status) => {
-              if (status === google.maps.GeocoderStatus.OK && results.length > 0) {
-                const locationData = results[0].formatted_address;
-                setLocation({
-                  latitude,
-                  longitude,
-                  locationData
-                });
-                speak(locationData); // Speak the location data
-              }
-            });
+            const mapboxToken = 'pk.eyJ1IjoiZTA5NTc4MTEiLCJhIjoiY2xpdDFsYTk5MDQ3MjNjbTh1ZGR1eXFnbyJ9.k3BpAnN8M9SzIOcLk6ZL5Q'; 
+            const url = `https://api.mapbox.com/geocoding/v5/mapbox.places/${longitude},${latitude}.json?access_token=${mapboxToken}`;
+            const response = await fetch(url);
+            const data = await response.json();
+            const locationData = data.features[0].place_name;
+            console.log(setLocationData(locationData));
+            
           } catch (error) {
             console.error('Error retrieving location data:', error);
           }
@@ -103,8 +99,10 @@ function App() {
     }
   };
   
+  
   useEffect(() => {
     runCoco();
+    getLocation();
   }, []);
 
   useEffect(() => {
@@ -149,6 +147,7 @@ function App() {
         />
         
         <div className="spoken-word">{spokenWord}</div>
+        <div className="location-data">{locationData}</div>
       </header>
     </div>
   );
