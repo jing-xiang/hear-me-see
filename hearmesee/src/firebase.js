@@ -1,8 +1,12 @@
-import { initializeApp } from 'firebase/app';
-import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
-import { getDatabase } from "firebase/database";
+ // Import the functions you need from the SDKs you need
+ import { initializeApp } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-app.js";
+ import {
+   getAuth,
+   createUserWithEmailAndPassword,
+ } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-auth.js";
+ 
+ // https://firebase.google.com/docs/web/setup#available-libraries
 
-// TODO: Replace the following with your app's Firebase project configuration
 const firebaseConfig = {
     apiKey: "AIzaSyAeAl3FUH0PGDWToUzSqhKfj4af-RR-8ok",
     authDomain: "hear-me-see.firebaseapp.com",
@@ -14,87 +18,47 @@ const firebaseConfig = {
     measurementId: "G-WN6MKN9KBQ"
 };
 
-const app = initializeApp(firebaseConfig);
-const database = getDatabase(app);
+ // Initialize Firebase
+ const app = initializeApp(firebaseConfig);
+ const auth = getAuth()
 
-firebase.initializeApp(firebaseConfig);
 
-const auth = getAuth(app);
-createUserWithEmailAndPassword(auth, email, password)
-  .then((userCredential) => {
-    // Signed in 
-    const user = userCredential.user;
-    const email = userCredential.email;
-    const password = userCredential.password;
-    // ...
-  })
-  .catch((error) => {
-    const errorCode = error.code;
-    const errorMessage = error.message;
-    // ..
-  });
-
-function register() {
-    var username = getInputVal('username');
-    var email = getInputVal('email');
-    var password = getInputVal('password');
-
-    if (validate_email(email) == false || validate_password(password) == false ) {
-        alert('Please ensure your password has more than 6 characters')
-        return
-    }
-
-    auth.createUserWithEmailAndPasword(email, password) 
-        .then(function() {
-
-            var user = auth.currentUser
-
-            var database_ref = database.ref()
-
-            var user_data = {
-                username: username,
-                email: email,
-                last_login: Date.now()
-            }
-
-            database_ref.child('users/' + user.uid).set(user.data)
-
-            alert('User Created!')
-
-        })
-        .catch(function(error) {
-            var error_code = error.error_code
-            var error_mesage = error.message
-
-            alert(error_mesage)
-        })
-    }
-
-function validate_email(email) {
-    expression = /^[^@]+@\w+(\.\w+)+\w$/.test(str);
-    if (expression.test(email) == true) {
-        return true
-    } else {
-        return false
-    }
-}
-
-function validate_password(password) {
-    if (password < 6) {
-        return false
-    } else {
-        return true
-    }
-}
-
-function validate_field(field) {
-    if (field==null) {
-        return false
-    }
-    
-    if (field.length <= 0) {
-        return false
-    } else {
-        return true
-    }
-}
+ var fullName = document.getElementById("fullname");
+ var contact = document.getElementById("contact");
+ var email = document.getElementById("email");
+ var password = document.getElementById("password");
+ var copassword = document.getElementById("copassword")
+ window.signup = function (e) {
+ if(password)
+ 
+     if(fullName.value == "" || contact.value=="" || email.value =="" || password.value ==""){
+         alert("All Field Are Required")
+     }
+     if(password.value == copassword.value){
+      
+     }
+     else{
+         alert("Password Confirmation is Wrong")
+         return false
+     }
+ 
+     e.preventDefault();
+     var obj = {
+       firstName: fullName.value,
+       contact: contact.value,
+       email: email.value,
+       password: password.value,
+     };
+   
+     createUserWithEmailAndPassword(auth, obj.email, obj.password)
+     .then(function(success){
+         window.location.replace('HTML/login.html')
+       // console.log(success.user.uid)
+       alert("signup successfully")
+     })
+     .catch(function(err){
+       alert("Error in " + err)
+     });
+    console.log()
+     console.log(obj);
+   };
