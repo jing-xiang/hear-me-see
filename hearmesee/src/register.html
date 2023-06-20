@@ -15,64 +15,23 @@
                     <p class="subline">the app that helps you see</p>
                 <h2>Register as a Caregiver</h2>
 
-            
+                <div id= "Create an Account">
                 <div class="input-field">
-                    <input type="text" class='input' placeholder="Username" required>
-                </div>
-                <div class="input-field">
-                    <input type="text" class='input' placeholder="Email" required>
-                </div>
-                <div class="input-field">
-                    <input type="text" class='input' placeholder="Password" required>
-                </div>
-                <button class="submit" id="register">Sign Up</button>
+                    <input type="text" class='input' id="email-signup" placeholder="Email*"></input>
+                    <input class='input' id = "confirm-email-signup" type = "email" placeholder = "Confirm Email *"></input>
+
+                    <input type="text" class='input' id="password-signup" placeholder="Password" required></input>
+                    <input class='input' id = "confirm-password-signup" type = "password" placeholder = "Confirm Password *"></input>
+                    <button id = "create-acct-btn">Create Account</button>
+                    <button id = "return-btn">Return to Login</button>
                </div>
+            </div>
                <div class="top-header">
                 <a href="index.html">Have an exisiting account?</a>
-            </div>
+               </div>
             </div>
         </div>
     </div>
-    <script type="module">
-        // Import the functions you need from the SDKs you need
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-app.js";
-        import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-auth.js";
-
-        // Your web app's Firebase configuration
-        const firebaseConfig = {
-            apiKey: "AIzaSyAeAl3FUH0PGDWToUzSqhKfj4af-RR-8ok",
-            authDomain: "hear-me-see.firebaseapp.com",
-            databaseURL: "https://hear-me-see-default-rtdb.asia-southeast1.firebasedatabase.app",
-            projectId: "hear-me-see",
-            storageBucket: "hear-me-see.appspot.com",
-            messagingSenderId: "28925318865",
-            appId: "1:28925318865:web:77ec8aa82bf8c877a1d7f0",
-            measurementId: "G-WN6MKN9KBQ"
-        };
-
-        // Initialize Firebase
-        const app = initializeApp(firebaseConfig);
-        const auth = getAuth();
-
-        // Sign Up button click event handler
-        document.querySelector('#register').addEventListener('click', () => {
-            const email = document.getElementById('email').value;
-            const password = document.getElementById('password').value;
-
-            createUserWithEmailAndPassword(auth, email, password)
-                .then((userCredential) => {
-                    // User registered successfully
-                    const user = userCredential.user;
-                    console.log('User registered:', user);
-                    // Perform additional actions after registration if needed
-                })
-                .catch((error) => {
-                    // Handle errors during registration
-                    const errorCode = error.code;
-                    const errorMessage = error.message;
-                    console.error('Registration error:', errorCode, errorMessage);
-                });
-        });
-    </script>
+    <script type = "module" src = "firebase.js"></script>
 </body>
 </html>

@@ -27,6 +27,10 @@ body {
     padding: 0 15px 0 15px;
 }
 
+#create-acct {
+    display: none;
+  }
+
 h1 {
     text-align: center;
     color: #fff;
@@ -127,7 +131,7 @@ label a{
 }
 
 
-.register {
+.register  {
     font-size: .9em;
     color: #fff;
     text-align: center;
