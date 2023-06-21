@@ -121,6 +121,28 @@ i {
     margin-top: 10px;
 }
 
+button:hover {
+    cursor: pointer;
+    opacity: 0.8;
+    transition: 0.3s;
+  }
+  
+ #create-acct-btn {
+    background-color: #0583D2;
+    color: white;
+    border: none;
+    margin-top: 5%;
+    text-align: left;
+  }
+
+  #return-btn {
+    background-color: #0583D2;
+    color: white;
+    border: none;
+    margin-top: 1%;
+    text-align: left;
+}
+
 .left {
     display: flex;
 }
