@@ -79,7 +79,7 @@ function App() {
         async (position) => {
           const { latitude, longitude } = position.coords;
           try {
-            const mapboxToken = 'pk.eyJ1IjoiZTA5NTc4MTEiLCJhIjoiY2xpdDFsYTk5MDQ3MjNjbTh1ZGR1eXFnbyJ9.k3BpAnN8M9SzIOcLk6ZL5Q'; 
+            const mapboxToken = process.env.REACT_APP_MAPBOX_API; 
             const url = `https://api.mapbox.com/geocoding/v5/mapbox.places/${longitude},${latitude}.json?access_token=${mapboxToken}`;
             const response = await fetch(url);
             const data = await response.json();
