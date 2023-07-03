@@ -50,8 +50,8 @@ Firebase: Used for authentication of users and storing of user information (in F
 React: Used for developing parts of the application's user interface.
 
 
-# Make sure you are in the correct directory by running cd hearmesee ->
-# In the project directory, you can run:
+# run cd hearmesee ->
+# In the project directory, run:
 
 yarn start or
 npm start
