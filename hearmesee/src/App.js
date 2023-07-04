@@ -6,6 +6,7 @@ import Webcam from "react-webcam";
 import "./App.css";
 import { drawRect } from "./utilities";
 
+
 function App() {
   const webcamRef = useRef(null);
   const canvasRef = useRef(null);
@@ -30,9 +31,10 @@ function App() {
     const net = await cocossd.load();
     console.log("Loaded.");
     // Loop and detect objects
+    //regulate text to speech synchronisation
     setInterval(() => {
       detect(net);
-    }, 10);
+    }, 4000);
   };
 
   const detect = async (net) => {
@@ -68,12 +70,16 @@ function App() {
     }
   };
 
+  //function for TTS given a detected object as input
   const speak = (text) => {
     const utterance = new SpeechSynthesisUtterance(text);
     synthRef.current.speak(utterance);
+    console.log(text);
   };
 
+  //mapbox feature
   const getLocation = () => {
+    //display location
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
         async (position) => {
@@ -100,9 +106,11 @@ function App() {
   };
   
   
+  
   useEffect(() => {
     runCoco();
     getLocation();
+    
   }, []);
 
   useEffect(() => {
@@ -111,6 +119,7 @@ function App() {
       window.removeEventListener('resize', handleResize);
     };
   }, []);
+
 
   return (
     <div className="App">
@@ -140,7 +149,7 @@ function App() {
             left: 0,
             right: 0,
             textAlign: "center",
-            zIndex: 8,
+            zIndex: 10,
             width: 640,
             height: 480,
           }}
@@ -148,6 +157,8 @@ function App() {
         
         <div className="spoken-word">{spokenWord}</div>
         <div className="location-data">{locationData}</div>
+
+
       </header>
     </div>
   );
