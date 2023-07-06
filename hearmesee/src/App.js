@@ -5,7 +5,7 @@ import * as cocossd from "@tensorflow-models/coco-ssd";
 import Webcam from "react-webcam";
 import "./App.css";
 import { drawRect } from "./utilities";
-
+import logo from "../src/appicon.png";
 
 function App() {
   const webcamRef = useRef(null);
@@ -13,6 +13,7 @@ function App() {
   const synthRef = useRef(window.speechSynthesis);
   const [spokenWord, setSpokenWord] = useState('');
   const [locationData, setLocationData] = useState('');
+  const [logoOpacity, setLogoOpacity] = useState(0); 
 
 
   const [windowDimensions, setWindowDimensions] = useState({
@@ -65,6 +66,12 @@ function App() {
       const speechText = objectNames.join(", ");
       setSpokenWord(speechText);
 
+      // Update logo opacity based on the number of objects detected
+      const numObjects = obj.length;
+      let opacity = 0;
+      opacity = Math.min(numObjects * 0.2, 1);
+      setLogoOpacity(opacity);
+
       // Read out detected objects
       speak(speechText);
     }
@@ -106,7 +113,6 @@ function App() {
   };
   
   
-  
   useEffect(() => {
     runCoco();
     getLocation();
@@ -124,6 +130,11 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
+      <div className="logo-container" style={{
+            opacity: logoOpacity,
+          }}>
+          <img src={logo} alt="Logo" className="logo" />
+        </div>
         <Webcam
           ref={webcamRef}
           muted={true}
