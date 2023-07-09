@@ -5,6 +5,7 @@ import * as cocossd from "@tensorflow-models/coco-ssd";
 import Webcam from "react-webcam";
 import "./App.css";
 import { drawRect } from "./utilities";
+import logo from "../src/appicon.png";
 
 function App() {
   const webcamRef = useRef(null);
@@ -12,6 +13,7 @@ function App() {
   const synthRef = useRef(window.speechSynthesis);
   const [spokenWord, setSpokenWord] = useState('');
   const [locationData, setLocationData] = useState('');
+  const [logoOpacity, setLogoOpacity] = useState(0); 
 
 
   const [windowDimensions, setWindowDimensions] = useState({
@@ -30,9 +32,10 @@ function App() {
     const net = await cocossd.load();
     console.log("Loaded.");
     // Loop and detect objects
+    //regulate text to speech synchronisation
     setInterval(() => {
       detect(net);
-    }, 10);
+    }, 4000);
   };
 
   const detect = async (net) => {
@@ -63,23 +66,33 @@ function App() {
       const speechText = objectNames.join(", ");
       setSpokenWord(speechText);
 
+      // Update logo opacity based on the number of objects detected
+      const numObjects = obj.length;
+      let opacity = 0;
+      opacity = Math.min(numObjects * 0.2, 1);
+      setLogoOpacity(opacity);
+
       // Read out detected objects
       speak(speechText);
     }
   };
 
+  //function for TTS given a detected object as input
   const speak = (text) => {
     const utterance = new SpeechSynthesisUtterance(text);
     synthRef.current.speak(utterance);
+    console.log(text);
   };
 
+  //mapbox feature
   const getLocation = () => {
+    //display location
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
         async (position) => {
           const { latitude, longitude } = position.coords;
           try {
-            const mapboxToken = 'pk.eyJ1IjoiZTA5NTc4MTEiLCJhIjoiY2xpdDFsYTk5MDQ3MjNjbTh1ZGR1eXFnbyJ9.k3BpAnN8M9SzIOcLk6ZL5Q'; 
+            const mapboxToken = process.env.REACT_APP_MAPBOX_API; 
             const url = `https://api.mapbox.com/geocoding/v5/mapbox.places/${longitude},${latitude}.json?access_token=${mapboxToken}`;
             const response = await fetch(url);
             const data = await response.json();
@@ -103,6 +116,7 @@ function App() {
   useEffect(() => {
     runCoco();
     getLocation();
+    
   }, []);
 
   useEffect(() => {
@@ -112,9 +126,15 @@ function App() {
     };
   }, []);
 
+
   return (
     <div className="App">
       <header className="App-header">
+      <div className="logo-container" style={{
+            opacity: logoOpacity,
+          }}>
+          <img src={logo} alt="Logo" className="logo" />
+        </div>
         <Webcam
           ref={webcamRef}
           muted={true}
@@ -140,7 +160,7 @@ function App() {
             left: 0,
             right: 0,
             textAlign: "center",
-            zIndex: 8,
+            zIndex: 10,
             width: 640,
             height: 480,
           }}
@@ -148,6 +168,8 @@ function App() {
         
         <div className="spoken-word">{spokenWord}</div>
         <div className="location-data">{locationData}</div>
+
+
       </header>
     </div>
   );

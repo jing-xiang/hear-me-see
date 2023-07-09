@@ -1,38 +1,106 @@
-// caregiver.js
+import React, { useState, useEffect } from "react";
+import mapboxgl from "mapbox-gl";
+import "mapbox-gl/dist/mapbox-gl.css";
+import "./App.css";
 
-// Create a new map instance
-function initMap() {
-    // Replace 'YOUR_MAP_CONTAINER_ID' with the ID of the container where you want to display the map
-    const mapContainer = document.getElementById('YOUR_MAP_CONTAINER_ID');
-    
-    // Replace 'YOUR_MAPBOX_ACCESS_TOKEN' with your actual Mapbox access token
-    mapboxgl.accessToken = 'pk.eyJ1IjoiZTA5NTc4MTEiLCJhIjoiY2xpdDFsYTk5MDQ3MjNjbTh1ZGR1eXFnbyJ9.k3BpAnN8M9SzIOcLk6ZL5Q';
-    
-    // Create a new map object
-    const map = new mapboxgl.Map({
-      container: mapContainer,
-      style: 'mapbox://styles/mapbox/streets-v11',
-      center: [longitude, latitude], // Replace with the longitude and latitude coordinates from app.js
-      zoom: 12, // Adjust the zoom level as needed
-    });
-    
-    // Add navigation controls to the map
-    const navigationControls = new mapboxgl.NavigationControl();
-    map.addControl(navigationControls);
-  }
-  
-  // Load the Mapbox GL JS library
-  function loadMapbox() {
-    const script = document.createElement('script');
-    script.src = 'https://api.mapbox.com/mapbox-gl-js/v2.5.0/mapbox-gl.js';
-    script.onload = () => {
-      initMap();
-    };
-    document.head.appendChild(script);
-  }
-  
-  // Load the caregiver script after the page has finished loading
-  window.addEventListener('load', () => {
-    loadMapbox();
-  });
-  
+function App() {
+  const [locationData, setLocationData] = useState("");
+  const [googleSearchUrl, setGoogleSearchUrl] = useState("");
+
+  // Function to get user's location using geolocation API
+  const getLocation = () => {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        async (position) => {
+          const { latitude, longitude } = position.coords;
+          try {
+            const mapboxToken = process.env.REACT_APP_MAPBOX_API;
+            mapboxgl.accessToken = mapboxToken;
+            const map = new mapboxgl.Map({
+              container: "map-container",
+              style: "mapbox://styles/mapbox/streets-v11",
+              center: [longitude, latitude],
+              zoom: 1, // Set initial zoom to a low value
+            });
+
+            // Add traffic data layer
+            map.on("load", () => {
+              map.addSource("traffic", {
+                type: "vector",
+                url: "mapbox://mapbox.mapbox-traffic-v1",
+              });
+              map.addLayer(
+                {
+                  id: "traffic-layer",
+                  type: "line",
+                  source: "traffic",
+                  "source-layer": "traffic",
+                  paint: {
+                    "line-color": "#ff0000",
+                    "line-width": 2,
+                  },
+                },
+                "waterway-label"
+              );
+            });
+
+            // Add a marker at the user's location
+            new mapboxgl.Marker().setLngLat([longitude, latitude]).addTo(map);
+
+            // Fly to the user's location with zoom animation
+            map.flyTo({
+              center: [longitude, latitude],
+              zoom: 15, // Specify the desired zoom level
+              duration: 2000, // Animation duration in milliseconds
+              easing: (t) => t, // Easing function for the animation
+            });
+
+            // Reverse geocoding to get location data
+            const url = `https://api.mapbox.com/geocoding/v5/mapbox.places/${longitude},${latitude}.json?access_token=${mapboxToken}`;
+            const response = await fetch(url);
+            const data = await response.json();
+            const locationData = data.features[0].place_name;
+            const googleSearchUrl = `https://www.google.com/search?q=${encodeURIComponent(
+              locationData
+            )}`;
+            setLocationData(locationData);
+            setGoogleSearchUrl(googleSearchUrl);
+          } catch (error) {
+            console.error("Error initializing map:", error);
+          }
+        },
+        (error) => {
+          console.error("Error retrieving location:", error);
+        },
+        { enableHighAccuracy: true }
+      );
+    } else {
+      console.log("Geolocation is not supported by this browser.");
+    }
+  };
+
+  useEffect(() => {
+    getLocation();
+  }, []);
+
+  return (
+    <div className="App">
+      <header className="App-header">
+        <div id="map-container" className="map-container" />
+        <div className="location-data">
+          <a href={googleSearchUrl} target="_blank" rel="noopener noreferrer" style={{
+            fontSize: "120%", // Increase the font size by 20%
+            color: "black", // Set the font color to black
+            textDecoration: "none", // Remove underline
+            textShadow: "-1px -1px 0 white, 1px -1px 0 white, -1px 1px 0 white, 1px 1px 0 white" // Add white outline
+          }}>
+            {locationData}
+            
+          </a>
+        </div>
+      </header>
+    </div>
+  );
+}
+
+export default App;
