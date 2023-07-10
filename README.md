@@ -1,3 +1,4 @@
+![alt text](https://github.com/jing-xiang/hear-me-see/blob/main/5649.jpg?raw=true)
 # HearMeSee
 HearMeSee is an AI-driven application specifically designed to improve the quality of life of visually-impaired individuals. Using cutting-edge image detection and voice recognition technology, HearMeSee assists its users by identifying and providing detailed descriptions of objects or obstacles within their environment. The application delivers real-time feedback, enhancing navigation safety. With the help of HearMeSee, user independence, and convenience are promoted.
 
