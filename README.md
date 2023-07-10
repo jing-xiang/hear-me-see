@@ -50,14 +50,4 @@ Firebase: Used for authentication of users and storing of user information (in F
 React: Used for developing parts of the application's user interface.
 
 
-# run cd hearmesee ->
-# In the project directory, run:
-
-yarn start or
-npm start
-
-Runs the app in the development mode.
-Open http://localhost:3000 to view it in the browser.
-
-The page will reload if you make edits.
-You will also see any lint errors in the console.
+See(or hear) it for yourself at https://hearmesee.netlify.app/
