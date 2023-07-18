@@ -1,4 +1,3 @@
-// Import dependencies
 import React, { useRef, useState, useEffect } from "react";
 import * as tf from "@tensorflow/tfjs";
 import * as cocossd from "@tensorflow-models/coco-ssd";
@@ -6,15 +5,18 @@ import Webcam from "react-webcam";
 import "./App.css";
 import { drawRect } from "./utilities";
 import logo from "../src/appicon.png";
+import * as THREE from "three";
+import NET from "vanta/dist/vanta.net.min";
 
 function App() {
   const webcamRef = useRef(null);
   const canvasRef = useRef(null);
   const synthRef = useRef(window.speechSynthesis);
-  const [spokenWord, setSpokenWord] = useState('');
-  const [locationData, setLocationData] = useState('');
-  const [logoOpacity, setLogoOpacity] = useState(0); 
-
+  const [spokenWord, setSpokenWord] = useState("");
+  const [locationData, setLocationData] = useState("");
+  const [logoOpacity, setLogoOpacity] = useState(0);
+  const [vantaEffect, setVantaEffect] = useState(0);
+  const vantaRef = useRef(null);
 
   const [windowDimensions, setWindowDimensions] = useState({
     width: window.innerWidth,
@@ -80,6 +82,7 @@ function App() {
   //function for TTS given a detected object as input
   const speak = (text) => {
     const utterance = new SpeechSynthesisUtterance(text);
+    utterance.rate = 2;
     synthRef.current.speak(utterance);
     console.log(text);
   };
@@ -92,47 +95,69 @@ function App() {
         async (position) => {
           const { latitude, longitude } = position.coords;
           try {
-            const mapboxToken = process.env.REACT_APP_MAPBOX_API; 
+            const mapboxToken = process.env.REACT_APP_MAPBOX_API;
             const url = `https://api.mapbox.com/geocoding/v5/mapbox.places/${longitude},${latitude}.json?access_token=${mapboxToken}`;
             const response = await fetch(url);
             const data = await response.json();
             const locationData = data.features[0].place_name;
             console.log(setLocationData(locationData));
-            
           } catch (error) {
-            console.error('Error retrieving location data:', error);
+            console.error("Error retrieving location data:", error);
           }
         },
         (error) => {
-          console.error('Error retrieving location:', error);
+          console.error("Error retrieving location:", error);
         }
       );
     } else {
-      console.log('Geolocation is not supported by this browser.');
+      console.log("Geolocation is not supported by this browser.");
     }
   };
-  
-  
+
   useEffect(() => {
     runCoco();
     getLocation();
-    
   }, []);
 
   useEffect(() => {
-    window.addEventListener('resize', handleResize);
+    window.addEventListener("resize", handleResize);
     return () => {
-      window.removeEventListener('resize', handleResize);
+      window.removeEventListener("resize", handleResize);
     };
   }, []);
 
+  //background effect
+  useEffect(() => {
+    if (!vantaEffect) {
+      setVantaEffect(
+        NET({
+          el: vantaRef.current,
+          THREE: THREE,
+          mouseControls: true,
+          touchControls: true,
+          gyroControls: true,
+          minHeight: windowDimensions.height,
+          minWidth: 600.0,
+          scale: 1.0,
+          scaleMobile: 1.0,
+          color: 0xffffff,
+          backgroundColor:0x45434d,
+          points: 15.0,
+          maxDistance: 10.0,
+          spacing: 20.0,
+        })
+      );
+    }
+    return () => {
+      if (vantaEffect) vantaEffect.destroy();
+    };
+  }, [vantaEffect, windowDimensions.height]);
 
   return (
     <div className="App">
+        <div className="vanta-container" ref={vantaRef} ></div>
       <header className="App-header">
-      <div className="logo-container" style={{
-            opacity: logoOpacity,
-          }}>
+        <div className="logo-container" style={{ opacity: logoOpacity }}>
           <img src={logo} alt="Logo" className="logo" />
         </div>
         <Webcam
@@ -165,11 +190,47 @@ function App() {
             height: 480,
           }}
         />
-        
-        <div className="spoken-word">{spokenWord}</div>
-        <div className="location-data">{locationData}</div>
 
+        <div
+          className="spoken-word"
+          style={{
+            position: "absolute",
+            fontSize: "170px",
+            bottom: "20px",
+            color: "white",
+            zIndex: 11,
+          }}
+        >
+          {spokenWord}
+        </div>
+        <div
+          className="location-data"
+          style={{
+            fontSize: "23px",
+            position: "absolute",
+            bottom: "50px",
+            left: "50px",
+            color: "white",
+            textShadow: "-1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black, 1px 1px 0 blackl",
+            zIndex: 11,
+          }}
+        >
+          {locationData}
+        </div>
 
+        <div
+          className="blur-rectangle"
+          style={{
+            position: "absolute",
+            bottom: 0,
+            left: 0,
+            width: windowDimensions.width,
+            height: "200px",
+            backgroundColor: "rgba(0, 0, 0, 0.5)",
+            backdropFilter: "blur(8px)",
+            zIndex: 10,
+          }}
+        ></div>
       </header>
     </div>
   );

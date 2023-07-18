@@ -9664,6 +9664,11 @@ thenify-all@^1.0.0:
   dependencies:
     any-promise "^1.0.0"
 
+three@0.121.0:
+  version "0.121.0"
+  resolved "https://registry.npmjs.org/three/-/three-0.121.0.tgz"
+  integrity sha512-12bkOFsSCsfHViuqDuxDccMBT8eJ/UH829P1J50f4mvI9pWNX4iurZq8Vbo+rs9rKkgrSBRq7ubE77dQ1Y1hzA==
+
 throat@^6.0.1:
   version "6.0.2"
   resolved "https://registry.npmjs.org/throat/-/throat-6.0.2.tgz"
@@ -9956,6 +9961,11 @@ v8-to-istanbul@^8.1.0:
     "@types/istanbul-lib-coverage" "^2.0.1"
     convert-source-map "^1.6.0"
     source-map "^0.7.3"
+
+vanta@^0.5.24:
+  version "0.5.24"
+  resolved "https://registry.npmjs.org/vanta/-/vanta-0.5.24.tgz"
+  integrity sha512-fvieEbHy1ZS23zrcX+topzqAgA4Uct1enngOEWLFBgs9TtOf6RDFOYatH7KSVdrABzQDMCQ5myQy+nTSZZwLzg==
 
 vary@~1.1.2:
   version "1.1.2"
