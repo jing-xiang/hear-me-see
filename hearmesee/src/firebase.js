@@ -7,15 +7,16 @@
   // Your web app's Firebase configuration
   // For Firebase JS SDK v7.20.0 and later, measurementId is optional
   const firebaseConfig = {
-    apiKey: process.env.REACT_APP_FIREBASE_API,
-    authDomain: process.env.REACT_APP_FIREBASE_AUTH_DOMAIN,
-    databaseURL: process.env.REACT_APP_FIREBASE_DATABASE_URL,
-    projectId: process.env.REACT_APP_FIREBASE_PROJECT_ID,
-    storageBucket: process.env.REACT_APP_FIREBASE_STORAGE_BUCKET,
-    messagingSenderId: process.env.REACT_APP_SENDER_ID,
-    appId: process.env.REACT_APP_FIREBASE_ID,
-    measurementId: process.env.REACT_APP_MEASUREMENT_ID
+    apiKey: "AIzaSyAeAl3FUH0PGDWToUzSqhKfj4af-RR-8ok",
+    authDomain: "hear-me-see.firebaseapp.com",
+    databaseURL: "https://hear-me-see-default-rtdb.asia-southeast1.firebasedatabase.app",
+    projectId: "hear-me-see",
+    storageBucket: "hear-me-see.appspot.com",
+    messagingSenderId: "28925318865",
+    appId: "1:28925318865:web:77ec8aa82bf8c877a1d7f0",
+    measurementId: "G-WN6MKN9KBQ"
   };
+
 
   // Initialize Firebase
   const app = initializeApp(firebaseConfig);
@@ -83,23 +84,26 @@
     console.log(email);
     password = passwordInput.value;
     console.log(password);
-  
+
     signInWithEmailAndPassword(auth, email, password)
-      .then((userCredential) => {
-        // Signed in
-        const user = userCredential.user;
-        console.log("Success! Welcome back!");
-        window.alert("Success! Welcome back!");
-        // ...
-      })
-      .catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        console.log("Error occurred. Try again.");
-        window.alert("Error occurred. Try again.");
-      });
-  });
-  
+        .then((userCredential) => {
+            const user = userCredential.user;
+            console.log("Success! Welcome back!");
+            window.alert("Success! Welcome back!");
+            
+            // Redirect the user to the desired page upon successful login
+            window.location.href = 'https://hearmesee.netlify.app/';
+            
+            // ...
+        })
+        .catch((error) => {
+            const errorCode = error.code;
+            const errorMessage = error.message;
+            console.log("Error occurred. Try again.");
+            window.alert("Error occurred. Try again.");
+        });
+});
+
   signupButton.addEventListener("click", function() {
       main.style.display = "none";
       createacct.style.display = "block";
