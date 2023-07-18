@@ -153,6 +153,11 @@ function App() {
     };
   }, [vantaEffect, windowDimensions.height]);
 
+  const videoConstraints = {
+  facingMode: "environment", // Use "user" for front camera
+};
+
+
   return (
     <div className="App">
         <div className="vanta-container" ref={vantaRef} ></div>
@@ -163,6 +168,7 @@ function App() {
         <Webcam
           ref={webcamRef}
           muted={true}
+          videoConstraints = {videoConstraints}
           style={{
             position: "absolute",
             marginLeft: "auto",
