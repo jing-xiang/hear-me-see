@@ -89,11 +89,10 @@
             const user = userCredential.user;
             console.log("Success! Welcome back!");
             window.alert("Success! Welcome back!");
-            
-            // Redirect the user to the desired page upon successful login
-            window.location.href = 'https://hearmesee.netlify.app/';
-            
-            // ...
+
+            setTimeout(() => {
+                window.location.href = 'https://hearmesee.netlify.app/';
+            }, 3000);
         })
         .catch((error) => {
             const errorCode = error.code;
@@ -102,6 +101,7 @@
             window.alert("Error occurred. Try again.");
         });
 });
+
 
   signupButton.addEventListener("click", function() {
       main.style.display = "none";
