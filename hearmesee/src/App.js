@@ -195,7 +195,7 @@ function App() {
           className="spoken-word"
           style={{
             position: "absolute",
-            fontSize: "170px",
+            fontSize: "500%",
             bottom: "20px",
             color: "white",
             zIndex: 11,
