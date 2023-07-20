@@ -7,14 +7,14 @@
    // Your web app's Firebase configuration
   // For Firebase JS SDK v7.20.0 and later, measurementId is optional
   const firebaseConfig = {
-    apiKey: process.env.REACT_APP_FIREBASE_API,
-    authDomain: process.env.REACT_APP_FIREBASE_AUTH_DOMAIN,
-    databaseURL: process.env.REACT_APP_FIREBASE_DATABASE_URL,
-    projectId: process.env.REACT_APP_FIREBASE_PROJECT_ID,
-    storageBucket: process.env.REACT_APP_FIREBASE_STORAGE_BUCKET,
-    messagingSenderId: process.env.REACT_APP_SENDER_ID,
-    appId: process.env.REACT_APP_FIREBASE_ID,
-    measurementId: process.env.REACT_APP_MEASUREMENT_ID
+    apiKey: '${process.env.REACT_APP_FIREBASE_API}',
+    authDomain: '${process.env.REACT_APP_FIREBASE_AUTH_DOMAIN}',
+    databaseURL: '${process.env.REACT_APP_FIREBASE_DATABASE_URL}',
+    projectId: '${process.env.REACT_APP_FIREBASE_PROJECT_ID}',
+    storageBucket: '${process.env.REACT_APP_FIREBASE_STORAGE_BUCKET}',
+    messagingSenderId: '${process.env.REACT_APP_SENDER_ID}',
+    appId: '${process.env.REACT_APP_FIREBASE_ID}',
+    measurementId: '${process.env.REACT_APP_MEASUREMENT_ID}'
   };
 
   // Initialize Firebase
@@ -72,8 +72,10 @@
       .catch((error) => {
         const errorCode = error.code;
         const errorMessage = error.message;
+        console.error(errorCode, errorMessage);
+        window.alert("Error occurred! " + errorMessage); 
         // ..
-        window.alert("Error occurred. Try again.");
+        window.alert("Error occurred! Try again.");
       });
     }
   });
@@ -89,10 +91,6 @@
             const user = userCredential.user;
             console.log("Success! Welcome back!");
             window.alert("Success! Welcome back!");
-
-            setTimeout(() => {
-                window.location.href = 'https://hearmesee.netlify.app/';
-            }, 3000);
         })
         .catch((error) => {
             const errorCode = error.code;

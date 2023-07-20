@@ -65,6 +65,7 @@ function App() {
             )}`;
             setLocationData(locationData);
             setGoogleSearchUrl(googleSearchUrl);
+            storeLocationData(locationData);
           } catch (error) {
             console.error("Error initializing map:", error);
           }

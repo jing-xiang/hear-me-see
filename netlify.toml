@@ -2,3 +2,21 @@
 from = "/*"
 to = "/index.html"
 status = 200
+
+# New User Redirect
+[[redirects]]
+from = "/index.html"
+to = "/register.html"
+status = 200
+
+# Caregiver Redirect
+[[redirects]]
+from = "/index.html"
+to = "/caregiver.html"
+status = 200
+
+# User Redirect
+[[redirects]]
+from = "/index.html"
+to = https://hearmesee.netlify.app/
+status = 301    
