@@ -1,7 +1,7 @@
 // Import the functions you need from the SDKs you need
   import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-app.js";
   import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-analytics.js";
-  import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-auth.js";
+  import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-auth.js";
 
 
    // Your web app's Firebase configuration
@@ -17,7 +17,6 @@
     measurementId: process.env.REACT_APP_MEASUREMENT_ID
   };
   
-
   // Initialize Firebase
   const app = initializeApp(firebaseConfig);
   const analytics = getAnalytics(app);
@@ -91,12 +90,14 @@
             const user = userCredential.user;
             console.log("Success! Welcome back!");
             window.alert("Success! Welcome back!");
+            window.location.href = "https://hearmesee.netlify.app/";
+        
         })
         .catch((error) => {
             const errorCode = error.code;
             const errorMessage = error.message;
-            console.log("Error occurred. Try again.");
-            window.alert("Error occurred. Try again.");
+            console.log("Wrong Email or Password. Try again.");
+            window.alert("Wrong Email or Password. Try again.");
         });
 });
 

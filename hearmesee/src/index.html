@@ -4,12 +4,12 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-    <title> Hear Me See </title>
+    <title>Hear Me See | Register </title>
+    <link rel="stylesheet" href="register.css">
 </head>
 <body>
     <div class="box">
-        <div class="image">
+        <div id= "main">
         <div class="container">
             <h1>HearMeSee</h1>
                 <p class="subline">the app that helps you see</p>
@@ -20,8 +20,8 @@
             <div class="input-field">
                 <input type="text" id = "email" class="input" placeholder="Email" required>
                 <input type="password" id = "password" class="input" placeholder="Password" required>
-                <button type = "submit" id = "submit" class="submit">Sign In</button>
-            </div>
+                <button id = "submit" class="submit">Submit</button>
+            </div>  
 
             <div class="bottom">
                 <div class="left">
@@ -33,19 +33,36 @@
                 </div>
             </div>
             <div class="register">
-                    <p>Don't have an account? <a href="register.html">Register</a></p>
+                    <p>Don't have an account?</p>
+                    <button id = "sign-up">Register</button>
             </div>
         </div>
+    </div>
+    </div>
+
+    <div id = "create-acct">
+    <div class="box">
+        <div class="image">
+            <div class="container">
+                <h1>HearMeSee</h1>
+                    <p class="subline">the app that helps you see</p>
+                <h2>Register as a Caregiver</h2>
+
+                <div id= "Create an Account">
+                  <div class="input-field">
+                    <input type="text" class='input' id="email-signup" placeholder="Email*"></input>
+                    <input class='input' id = "confirm-email-signup" type = "email" placeholder = "Confirm Email*"></input>
+
+                    <input type="text" class='input' id="password-signup" placeholder="Password*" required></input>
+                    <input class='input' id = "confirm-password-signup" type = "password" placeholder = "Confirm Password*"></input>
+                    <button id = "create-acct-btn"  class='input'>Create Account</button>
+                    <button id="return-btn" class="input">Return to Login</button>
+                  </div>
+               </div>
+            </div>
         </div>
     </div>
+    </div>  
     <script type = "module" src = "firebase.js"></script>
-    <script>
-        const signInButton = document.getElementById('submit');
-        signInButton.addEventListener('click', () => {
-            window.location.href = 'https://hearmesee.netlify.app/';
-        });
-    </script>
 </body>
-
-
 </html>

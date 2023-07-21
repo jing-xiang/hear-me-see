@@ -127,13 +127,16 @@ button:hover {
     transition: 0.3s;
   }
   
+
  #create-acct-btn {
     background-color: #0583D2;
     color: white;
     border: none;
     margin-top: 5%;
     text-align: left;
+    
   }
+
 
   #return-btn {
     background-color: #0583D2;
