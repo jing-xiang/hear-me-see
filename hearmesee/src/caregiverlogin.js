@@ -69,7 +69,7 @@ import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, se
         // ...
         window.alert("Success! Account created.");
         VerificationEmail();
-        window.alert('Success! Account created. Verification email sent. Check your mailbox.');
+        window.alert('Verification email sent,  please check your mailbox.');
       })
       .catch((error) => {
         const errorCode = error.code;
