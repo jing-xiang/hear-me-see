@@ -1,6 +1,6 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-app.js";
 import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-analytics.js";
-import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword,  } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-auth.js";
+import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, sendEmailVerification } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-auth.js";
 
 
    // Your web app's Firebase configuration
@@ -68,6 +68,8 @@ import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword,  }
         const user = userCredential.user;
         // ...
         window.alert("Success! Account created.");
+        VerificationEmail();
+        window.alert('Success! Account created. Verification email sent. Check your mailbox.');
       })
       .catch((error) => {
         const errorCode = error.code;
@@ -78,6 +80,22 @@ import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword,  }
       });
     }
   });
+
+  function VerificationEmail() {
+    sendEmailVerification(auth.currentUser)
+    .then(() => {
+            // Email verification sent!
+            console.log('Email Verification sent! Check your mailbox');
+            // ...
+        })
+        .catch((error) => {
+            const errorCode = error.code;
+            const errorMessage = error.message;
+            console.error(errorCode, errorMessage);
+            window.alert("Error occurred! " + errorMessage);
+        });
+}
+
   
   submitButton.addEventListener("click", function() {
     email = emailInput.value;
