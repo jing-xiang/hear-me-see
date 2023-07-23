@@ -1,6 +1,6 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-app.js";
-  import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-analytics.js";
-  import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-auth.js";
+import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-analytics.js";
+import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword,  } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-auth.js";
 
 
    // Your web app's Firebase configuration
@@ -90,7 +90,7 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.2/firebas
             const user = userCredential.user;
             console.log("Success! Welcome back!");
             window.alert("Success! Welcome back!");
-            window.location.href = "caregiver.js";
+           // window.location.href = "caregiver.js";
         
         })
         .catch((error) => {

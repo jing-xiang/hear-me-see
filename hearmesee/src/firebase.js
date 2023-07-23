@@ -38,7 +38,7 @@
   
   const returnBtn = document.getElementById("return-btn");
   
-  var email, password, signupEmail, signupPassword, confirmSignupEmail, confirmSignUpPassword;
+  var email, password, signupEmail, signupPassword, confirmSignupEmail, confirmSignUpPassword, emailForReset;
   
   createacctbtn.addEventListener("click", function() {
     var isVerified = true;
@@ -113,4 +113,5 @@
       createacct.style.display = "none";
   });
 
-  
+ 
+

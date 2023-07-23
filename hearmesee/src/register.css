@@ -103,7 +103,7 @@ i {
     font-size: 15px;
     height: 45px;
     outline: none;
-    width: 98%;
+    width: 100%;
     background: rgba(255,255,255,0.7);
     cursor: pointer;
     margin-top: 3%;
@@ -137,8 +137,8 @@ button:hover {
 }
   
 #create-acct-btn {
-    background-color: #0583D2;
-    color: white;
+    background-color: #fff;
+    color: black;
     border: none;
     margin-top: 5%;
     text-align: center;
@@ -149,8 +149,8 @@ button:hover {
 }
   
 #return-btn {
-    background-color: #0583D2;
-    color: white;
+    background-color: #fff;
+    color: black;
     border: none;
     margin-top: 5%;
     margin-left: 2%;
