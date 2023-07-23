@@ -108,7 +108,6 @@ import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, se
             const user = userCredential.user;
             console.log("Success! Welcome back!");
             window.alert("Success! Welcome back!");
-           // window.location.href = "caregiver.js";
         
         })
         .catch((error) => {

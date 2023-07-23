@@ -7,6 +7,9 @@ import { drawRect } from "./utilities";
 import logo from "../src/appicon.png";
 import * as THREE from "three";
 import NET from "vanta/dist/vanta.net.min";
+import firebase from "firebase/app";
+import "firebase/firestore";
+
 
 function App() {
   const webcamRef = useRef(null);
@@ -101,6 +104,7 @@ function App() {
             const data = await response.json();
             const locationData = data.features[0].place_name;
             console.log(setLocationData(locationData));
+            storeLocationData(locationData);
           } catch (error) {
             console.error("Error retrieving location data:", error);
           }
@@ -155,6 +159,19 @@ function App() {
 
   const videoConstraints = {
   facingMode: "environment", // Use "user" for front camera
+};
+
+const storeLocationData = async (locationData) => {
+  try {
+    const db = firebase.firestore(); // Get Firestore instance
+    await db.collection("locations").add({
+      location: locationData,
+      timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+    });
+    console.log("Location data stored in Firestore!");
+  } catch (error) {
+    console.error("Error storing location data in Firestore:", error);
+  }
 };
 
 
