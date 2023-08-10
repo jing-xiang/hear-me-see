@@ -5,8 +5,6 @@ Currently, visually-impaired people have benefited from the presence of caregive
 
 Hence, HearMeSee offers several unique ways to solve challenges faced by these individuals that may not be fully addressed by such traditional methods of using guiding canes and/or guide dogs. By leveraging cutting-edge image detection technology to identify and describe obstacles in real-time, this eliminates uncertainty associated with unidentified objects which allows users to navigate their environment more confidently. Hence, providing a more intuitive and efficient user experience.
 
-![overview](https://www.dropbox.com/scl/fi/h3tz9tqs33eaal8vypl5h/1_91434ewx0FEu7JD-D-Dw7A.png?rlkey=qs8rrpq35eu53v29dv4f6yeke&dl=0)
-
 # High Level Overview
 HearMeSee uses the TensorFlow.js library along with the COCO SSD (Common Objects in Context Single Shot MultiBox Detection) model for object detection. COCO SSD is a pre-trained deep learning model that can detect and classify various objects in real-time based on their visual features.
 
@@ -15,7 +13,6 @@ The COCO SSD model is based on the Single Shot MultiBox Detection (SSD) algorith
 In this project, the COCO SSD model is loaded using the TensorFlow.js library, and real-time object detection is performed by running the model on the video frames captured by the webcam. The detected objects are then displayed on the canvas along with their bounding boxes and labels for added clarity.
 
 # Architecture
-![overview](https://www.dropbox.com/scl/fi/n6uklt86rtgucgpl5sz9u/algorithm-and-network-architecture.png?rlkey=9n57nxrmojwdd31np2o542yk6&dl=0)
 The SSD architecture consists of a base convolutional neural network (CNN) backbone followed by a set of auxiliary convolutional layers. The backbone network, typically a pre-trained network like VGG16 or ResNet, extracts features from the input image and learns high-level representations. These features are then fed into the auxiliary layers, which are responsible for predicting object class labels and bounding box coordinates at multiple scales.
 
 At each prediction scale, the SSD architecture uses a set of convolutional filters to simultaneously predict a fixed number of bounding boxes and their associated class probabilities. These bounding boxes are called "default boxes" or "anchor boxes" and are pre-defined at different aspect ratios and scales to capture objects of various sizes. The predicted class probabilities and bounding box offsets are combined to generate the final detection results.
