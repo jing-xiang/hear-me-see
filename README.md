@@ -5,15 +5,14 @@ HearMeSee is an AI-driven application specifically designed to improve the quali
 
 # About
 
-HearMeSee is built using Android Studio, leveraging its comprehensive toolset and debugging capabilities. With a focus on user-centered design, we conduct extensive user research and feedback incorporation to ensure an intuitive and accessible user interface development process. Regular code reviews and automated testing to preemptively address potential issues show our commitment to providing a high-quality application. Emphasizing user-centered design, we incorporate user feedback and conduct rigorous user research to create an intuitive, accessible interface. 
+HearMeSee is built using React and TensorFlow, with Firebase integration. With a focus on user-centered design, we conduct extensive user research and feedback incorporation to ensure an intuitive and accessible user interface development process. Regular code reviews and automated testing to preemptively address potential issues show our commitment to providing a high-quality application. Emphasizing user-centered design, we incorporate user feedback and conduct rigorous user research to create an intuitive, accessible interface. 
 
-We employ continuous integration, deployment pipelines, and automated testing for an efficient development cycle. User acceptance testing is used to further fine-tune the application's functionality, ensuring a reliable, user-friendly experience for visually disabled individuals.
+We employ continuous integration, deployment pipelines, and automated testing for an efficient development cycle. User acceptance testing is used to fine-tune the application's functionality further, ensuring a reliable, user-friendly experience for visually disabled individuals.
+
 
 # Features
 
 Object Detection: Objects and obstacles near the user are located and identified in real time. By utilizing the smartphone's camera, visually disabled individuals can easily capture their surroundings about what is in front of them. This feature eliminates the uncertainty and safety hazards associated with unidentified objects, allowing users to navigate their environment more confidently.
-
-Voice Recognition: The advanced voice recognition system seamlessly translates spoken commands into actions, making it effortless for users to interact with the application. Whether it's identifying items or exploring unfamiliar territories, HearMeSee ensures accurate recognition and effortless usability.
 
 Real-Time Feedback: HearMeSee offers real-time audio feedback, describing objects or obstacles captured by the camera. Users receive instant and detailed information about the items in their surroundings, ensuring enhanced safety and independence. Through real-time object recognition, comprehensive audio feedback, and user-friendly accessibility, HearMeSee enhances the independence, safety, and overall quality of life for visually disabled individuals.
 
